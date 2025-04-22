@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 import pdf2image
 import re
 
-
+//strting app
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Change this to a random secret key
 
