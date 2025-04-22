@@ -161,7 +161,7 @@ def student_dashboard():
     finally:
         conn.close()
 
-
+#changing and commiting
 @app.route('/teacher_dashboard')
 def teacher_dashboard():
     if 'user_type' not in session or session['user_type'] != 'teacher':
