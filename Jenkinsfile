@@ -20,10 +20,11 @@ pipeline {
         }
 
         stage('Run Tests in Docker') {
-            steps {
-                bat "docker run --rm %IMAGE_NAME% pytest tests"
-            }
-        }
+    steps {
+        bat "docker run --rm %IMAGE_NAME% python -m pytest tests"
+    }
+}
+
 
         stage('Push Docker Image') {
             steps {
