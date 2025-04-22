@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        IMAGE_NAME = 'abhi9511/smarted-abhi-new-web' 
+        IMAGE_NAME = 'abhi9511/smarted-abhi-new-web' //changing and commiting
     }
 
     stages {
