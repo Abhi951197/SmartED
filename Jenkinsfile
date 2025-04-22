@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        IMAGE_NAME = 'smarted-abhi-new-web'
+        IMAGE_NAME = 'smarted-abhi-new-web' // Replace with your actual DockerHub username/repo
     }
 
     stages {
@@ -13,21 +13,15 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                bat 'pip install -r requirements.txt'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'pytest tests'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 bat "docker build -t %IMAGE_NAME% ."
+            }
+        }
+
+        stage('Run Tests in Docker') {
+            steps {
+                bat "docker run --rm %IMAGE_NAME% pytest tests"
             }
         }
 
