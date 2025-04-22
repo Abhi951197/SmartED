@@ -8,9 +8,11 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                git 'https://github.com/Abhi951197/SmartED.git'
-            }
+    steps {
+        git branch: 'main', url: 'https://github.com/Abhi951197/SmartED.git'
+    }
+}
+
         }
 
         stage('Install Dependencies') {
