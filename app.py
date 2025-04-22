@@ -10,7 +10,7 @@ import re
 
 #starting app
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Change this to a random secret key
+app.secret_key = 'your_secret_key_here'  # Change this to
 
 @app.route('/')
 def index():
