@@ -2,17 +2,15 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')  // Add this to Jenkins
-        IMAGE_NAME = 'smarted-abhi-new-web'  // replace with actual Docker Hub repo
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+        IMAGE_NAME = 'smarted-abhi-new-web'
     }
 
     stages {
         stage('Checkout') {
-    steps {
-        git branch: 'main', url: 'https://github.com/Abhi951197/SmartED.git'
-    }
-}
-
+            steps {
+                git branch: 'main', url: 'https://github.com/Abhi951197/SmartED.git'
+            }
         }
 
         stage('Install Dependencies') {
