@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        IMAGE_NAME = 'abhi9511/smarted-abhi-new-web' // Replace with your actual DockerHub username/repo
+        IMAGE_NAME = 'abhi9511/smarted-abhi-new-web' 
     }
 
     stages {
