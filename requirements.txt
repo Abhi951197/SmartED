@@ -1,0 +1,10 @@
+pymysql
+google.generativeai
+pdf2image
+PyMuPDF
+frontend
+tools
+flask
+gunicorn
+python-dotenv
+Werkzeug

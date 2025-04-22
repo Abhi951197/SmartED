@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      DB_HOST: crossover.proxy.rlwy.net
+      DB_PORT: 58509
+      DB_USER: root
+      DB_PASS: sVcFQqEAWxrqEnPnRKETakUENczPUliF
+      DB_NAME: railway
+    command: python app.py
