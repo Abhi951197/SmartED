@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Abhi951197/SmartED.git'
+                git branch: 'master', url: 'https://github.com/Abhi951197/SmartED.git'
             }
         }
 
