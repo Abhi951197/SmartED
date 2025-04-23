@@ -2,49 +2,44 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')  // Add this to Jenkins
-        IMAGE_NAME = 'smarted-abhi-new-web'  // replace with actual Docker Hub repo
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+        IMAGE_NAME = 'abhi9511/smarted-abhi-new-web' //changing commiting 
     }
 
     stages {
         stage('Checkout') {
-    steps {
-        git branch: 'main', url: 'https://github.com/Abhi951197/SmartED.git'
-    }
-}
-
-        }
-
-        stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'pytest tests/'
+                git branch: 'main', url: 'https://github.com/Abhi951197/SmartED.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                bat "docker build -t %IMAGE_NAME% ."
             }
         }
+
+        stage('Run Tests in Docker') {
+    steps {
+        bat "docker run --rm %IMAGE_NAME% python -m pytest tests"
+    }
+}
+
 
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
-                    sh 'docker push $IMAGE_NAME'
+                    bat '''
+                    echo %PASSWORD% | docker login -u %USERNAME% --password-stdin
+                    docker push %IMAGE_NAME%
+                    '''
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 5000:5000 $IMAGE_NAME'
+                bat 'docker run -d -p 5000:5000 %IMAGE_NAME%'
             }
         }
     }
